@@ -15,7 +15,7 @@ def home():
 
 
 @auth_bp.route("/admin", methods=["GET", "POST"])
-@admin_required
+
 def admin():
     players = Player.objects()
     errors = {}
