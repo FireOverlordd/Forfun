@@ -18,14 +18,21 @@ def load_user(user_id):
     
 def create_app(config=None):
     app = Flask(__name__)
-    app.secret_key = os.environ["SECRET_KEY"]
 
     app.config.from_object(config)
 
+    app.secret_key = os.environ["SECRET_KEY"]
+
+    app.config["MONGODB_SETTINGS"] = {
+        "db": "uno_rangliste",
+        "host": os.environ["MONGODB_URI"]
+    }
+
     db = MongoEngine()
     db.init_app(app)
+
     loginManager.init_app(app)
-    
+
     client = get_db().client
     app.session_interface = MongoDBSessionInterface(
         app,
