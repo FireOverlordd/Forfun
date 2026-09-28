@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+
+</head>
+<body>
+    <h1>Uno mit Zuschauern</h1>
+    <h2>Season 1</h2>
+    <h3>Stand nach Runde 14</h3>
+    <a href="{{url_for('auth.logout')}}">Logout</a>
+    <nav>
+
+    </nav>
+    <br>
+    <table class="ranking-table">
+        <thead>
+            <tr>
+                <th class="platz">Platz</th>
+                <th class="player">Spieler</th>
+                <th class="wins">Wins</th>
+                <th class="anteil">Anteil</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td class="platz">{{ loop.index }}.</td>
+                <td class="player">{{ player.name}}</td>
+                <td class="wins">{{ player.wins}}</td>
+                <td class="anteil">{{ (player.wins / (players | map(attribute="wins") | sum )) * 100 }}%</td>
+                <td class="action"><button class="plus-button">+</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="POST">
+    <br>
+    <label for="name">Neuer Spieler anlegen</label><br>
+    <input type="text", id="name", name="name", required><br>
+        {% if errors.common %}
+            <p class="error">{{ errors.common }}</p>
+        {% else %}
+            <br>
+        {% endif %}
+    <button type="submit">Anlegen</button>
+    </form>
+</body>
+</html>

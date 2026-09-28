@@ -1,0 +1,83 @@
+.error {margin: 4px 0; color: red;}
+
+.ranking-table {width: auto; margin: 0 auto; border-collapse: collapse;}
+ 
+body {
+        font-family: Arial, sans-serif;
+        margin: 0; 
+        padding: 40px;
+        background: rgb(17, 74, 100);
+        color: white;
+        text-align: center;
+}
+
+a {
+        color:#08df3e;
+}
+
+
+.table-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.ranking-table th {
+    text-align: left;
+    padding: 15px;
+    background: #ff0c0c;
+    color: #ffffff;
+    border: 2px solid #ff3232;
+}
+
+.ranking-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    background: #252525;
+    color: #ffffff;
+    border: 2px solid #555;
+}
+
+.ranking-table tbody tr {
+    transition: background 0.2s;
+}
+
+.ranking-table tbody tr:hover {
+    background: #08df3e;
+}
+
+.platz{width: 25px; font-weight: bold;}
+.player{width: 150px; text-align: left;}
+.wins{width: 50px}
+.anteil{width: 50px}
+
+button {
+    background: linear-gradient(135deg, #ff8c00, #e63900);
+
+    color: white;
+    border: none;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.action {
+    padding: 0 !important;
+}
+
+.plus-button{
+        padding: 15px;
+        border-radius: 0px;
+        background:#00963e
+}
+
+button:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="POST">
+        <label for="username">Username</label><br>
+        <input type="text", id="username", name="username", value="{{ username }}", required><br>
+        
+        {% if errors.username %}
+            <p class="error">{{ errors.username }}</p>
+        {% else %}
+            <br>
+        {% endif %}
+
+        <label for="password">Password</label><br>
+        <input type="password", id="password", name="password", required><br>
+
+        {% if errors.password %}
+            <p class="error">{{ errors.password }}</p>
+        {% else %}
+            <br>
+        {% endif %}
+
+        <label for="repassword">Password again</label><br>
+        <input type="password", id="repassword", name="repassword", required><br>
+
+        {% if errors.common %}
+            <p class="error">{{ errors.common }}</p>
+        {% else %}
+            <br>
+        {% endif %}
+
+        <button type="submit">Confirm</button><br>
+    </form>
+    <p>
+        Already have an account? <a href="{{url_for('auth.login')}}">Login</a>
+    </p>
+</body>
+</html>
