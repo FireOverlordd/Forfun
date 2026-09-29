@@ -8,8 +8,9 @@ admin_bp = Blueprint("admin", __name__)
 def admin():
     players = Player.objects().order_by("-wins")
     errors = {}
+    total_wins = sum(player.wins for player in players)
 
-    return render_template("admin.html", players=players, errors=errors)
+    return render_template("admin.html", players=players, errors=errors, total_wins=total_wins)
 
 
 @admin_bp.route("add-player", methods=["POST"])

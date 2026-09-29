@@ -10,7 +10,7 @@
 <body>
     <h1>Uno mit Zuschauern</h1>
     <h2>Season 1</h2>
-    <h3>Stand nach Runde {{ sum(players.wins for player in players) }}</h3>
+    <h3>Stand nach Runde {{ total_wins }}</h3>
     <a href="{{url_for('auth.login')}}">Login</a>
     <nav>
 
