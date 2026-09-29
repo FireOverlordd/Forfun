@@ -40,6 +40,7 @@ def login():
 
 
 @auth_bp.route("/register", methods=["GET", "POST"])
+@admin_required
 def register():
 
     errors = {}
