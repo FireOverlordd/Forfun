@@ -1,87 +1,305 @@
-.error {margin: 4px 0; color: red;}
+/* =========================
+   Allgemein
+   ========================= */
 
-.ranking-table {width: auto; margin: 0 auto; border-collapse: collapse;}
- 
-body {
-        font-family: Arial, sans-serif;
-        margin: 0; 
-        padding: 40px;
-        background: rgb(17, 74, 100);
-        color: white;
-        text-align: center;
+* {
+    box-sizing: border-box;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #114a64, #092c3d);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   Überschriften
+   ========================= */
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+
+h2 {
+    margin: 5px 0;
+    font-size: 26px;
+}
+
+h3 {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    color: #d7e8ee;
+    font-weight: normal;
+}
+
+
+/* =========================
+   Links
+   ========================= */
 
 a {
-        color:#08df3e;
+    display: inline-block;
+    color: #08df3e;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #6dff91;
+    transform: translateY(-1px);
 }
 
 
-.table-container h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
+/* =========================
+   Tabelle
+   ========================= */
+
+.ranking-table {
+    width: auto;
+    min-width: 600px;
+    margin: 0 auto 35px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
+
+/* Tabellenkopf */
 
 .ranking-table th {
     text-align: left;
     padding: 15px;
-    background: #ff0c0c;
-    color: #ffffff;
-    border: 2px solid #ff3232;
+    background: linear-gradient(135deg, #ff0c0c, #c90000);
+    color: white;
+    border: none;
 }
+
+.ranking-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.ranking-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+
+
+
+/* Tabellenzellen */
 
 .ranking-table td {
     padding: 15px;
-    border-bottom: 1px solid #eee;
     background: #252525;
-    color: #ffffff;
-    border: 2px solid #555;
+    color: white;
+    border: none;
+    border-top: 1px solid #444;
 }
 
 .ranking-table tbody tr {
-    transition: background 0.2s;
-}
-
-.ranking-table tbody tr:hover {
-    background: #08df3e;
-}
-
-.platz{width: 25px; font-weight: bold;}
-.player{width: 150px; text-align: left;}
-.wins{width: 50px}
-.anteil{width: 50px}
-
-button {
-    background: linear-gradient(135deg, #ff8c00, #e63900);
-
-    color: white;
-    border: none;
-
-    padding: 12px 18px;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
-
     transition: 0.2s;
 }
 
-.action {
-    padding: 0 !important;
+
+/* Hover über Zeile */
+
+.ranking-table tbody tr:hover td {
+    background: #303030;
 }
 
-.plus-button{
-        padding: 15px;
-        border-radius: 0px;
-        background:#00963e
+
+/* =========================
+   Spalten
+   ========================= */
+
+.platz {
+    width: 70px;
+    font-weight: bold;
+}
+
+.player {
+    width: 180px;
+    text-align: left;
+}
+
+.wins {
+    width: 80px;
+    text-align: center;
+}
+
+.anteil {
+    width: 100px;
+    text-align: center;
+}
+
+
+/* =========================
+   Plus-Button
+   ========================= */
+
+.action {
+    width: 60px;
+    padding: 0 !important;
+    vertical-align: middle;
+    line-height: 0; /* verhindert Lücken durch die Zeilenhöhe */
+}
+
+.action form {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.plus-button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    border-radius: 0;
+    background: #00963e;
+    font-size: 20px;
+    line-height: 1.2; /* Button-Text wieder normal */
+}
+
+.plus-button:hover {
+    background: #00b94e;
+    transform: none;
+}
+
+
+/* =========================
+   Allgemeine Buttons
+   ========================= */
+
+button {
+    background: linear-gradient(135deg, #ff8c00, #e63900);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 button:hover {
     transform: scale(1.05);
 }
 
-tr:has(.plus-button:hover) {
-    outline: 2px solid rgb(172, 172, 172);
+
+/* =========================
+   Zeile beim Plus-Hover
+   ========================= */
+
+.ranking-table tr:has(.plus-button:hover) {
+    outline: 2px solid #08df3e;
+    outline-offset: -2px;
+}
+
+
+/* =========================
+   Spieler hinzufügen
+   ========================= */
+
+form:not(.ranking-table form) {
+    margin-top: 20px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 12px 15px;
+    width: 250px;
+    border: 2px solid #555;
+    border-radius: 10px;
+    background: #252525;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: #08df3e;
+    box-shadow: 0 0 8px rgba(8, 223, 62, 0.3);
+}
+
+input[type="password"]:focus {
+    border-color: #08df3e;
+    box-shadow: 0 0 8px rgba(8, 223, 62, 0.3);
+}
+
+input[type="password"] {
+    padding: 12px 15px;
+    width: 250px;
+    border: 2px solid #555;
+    border-radius: 10px;
+    background: #252525;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+/* =========================
+   Fehlermeldung
+   ========================= */
+
+.error {
+    margin: 8px 0;
+    color: #ff5555;
+    font-weight: bold;
+}
+
+
+/* =========================
+   Handy
+   ========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 25px 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .ranking-table {
+        min-width: 100%;
+        font-size: 14px;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 10px 7px;
+    }
+
+    .player {
+        width: auto;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        max-width: 250px;
+    }
 }
