@@ -74,13 +74,7 @@ def register():
                 username=username,
                 password=Hash.hash(password)
             )
-            player = Player(
-                name=username,
-                wins = 1
-            )
-
             user.save()
-            player.save()
 
         return redirect(url_for("main.home"))
     return render_template("register.html", errors=errors)
