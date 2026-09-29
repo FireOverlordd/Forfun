@@ -43,10 +43,10 @@
             {% endfor %}
         </tbody>
     </table>
-    <form method="POST", action="{{ url_for('admin.add_player') }}">
+    <form method="POST" action="{{ url_for('admin.add_player') }}">
     <br>
     <label for="name">Neuer Spieler anlegen</label><br>
-    <input type="text", id="name", name="name", required><br>
+    <input type="text" id="name" name="name" required><br>
         {% if errors.common %}
             <p class="error">{{ errors.common }}</p>
         {% else %}
