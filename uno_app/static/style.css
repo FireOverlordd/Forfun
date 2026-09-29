@@ -81,3 +81,7 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+
+tr:has(.plus-button:hover) {
+    outline: 2px solid rgb(172, 172, 172);
+}

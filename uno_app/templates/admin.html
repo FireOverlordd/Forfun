@@ -32,13 +32,18 @@
                 <td class="platz">{{ loop.index }}.</td>
                 <td class="player">{{ player.name}}</td>
                 <td class="wins">{{ player.wins}}</td>
-                <td class="anteil">{{ (player.wins / (players | map(attribute="wins") | sum )) * 100 }}%</td>
-                <td class="action"><button class="plus-button">+</button></td>
+                <td class="anteil">{{ ((player.wins / (players | map(attribute="wins") | sum )) * 100) | round(2) }}%</td>
+                <td class="action">
+                    <form method="POST" action="{{ url_for('admin.add_win')}}">
+                        <input type="hidden" name="player_id" value="{{ player.id }}">
+                        <button type="submit" class="plus-button">+</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form method="POST">
+    <form method="POST", action="{{ url_for('admin.add_player') }}">
     <br>
     <label for="name">Neuer Spieler anlegen</label><br>
     <input type="text", id="name", name="name", required><br>
@@ -49,5 +54,11 @@
         {% endif %}
     <button type="submit">Anlegen</button>
     </form>
+
+    <script>
+    setTimeout(function() {
+        location.reload();
+    }, 10 * 60 * 1000);
+    </script>
 </body>
 </html>

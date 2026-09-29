@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
 from uno_app.utils.decorators import admin_required
@@ -8,43 +8,10 @@ from uno_app.models.player_model import Player
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("/", methods=["GET"])
-def home():
-    players = Player.objects()
-    return render_template("index.html", players=players)
-
-
-@auth_bp.route("/admin", methods=["GET", "POST"])
-@admin_required
-def admin():
-    players = Player.objects()
-    errors = {}
-
-    if request.method == "POST":
-        name = request.form.get("name")
-
-        #1. name already used
-        if Player.objects(name=name).first():
-            errors["common"] = "Name gibt es bereits"
-
-        if errors:
-            render_template("admin.html", players=players, errors=errors)
-        else:
-            player = Player(
-                name=name,
-                wins=1
-            )
-
-            player.save()
-            players = Player.objects()
-
-    return render_template("admin.html", players=players, errors=errors)
-
-
 @auth_bp.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("auth.home"))
+    return redirect(url_for("main.home"))
 
 
 @auth_bp.route("/login", methods=["GET", "POST"])
@@ -66,9 +33,9 @@ def login():
         login_user(user, remember=True)
 
         if user.is_admin:
-            return redirect(url_for("auth.admin"))
+            return redirect(url_for("admin.admin"))
 
-        return redirect(url_for("auth.home"))
+        return redirect(url_for("main.home"))
     return render_template("login.html", errors=errors)
 
 
@@ -114,6 +81,6 @@ def register():
             user.save()
             player.save()
 
-        return redirect(url_for("auth.login"))
+        return redirect(url_for("main.home"))
     return render_template("register.html", errors=errors)
 

@@ -5,8 +5,10 @@ from flask_session.mongodb import MongoDBSessionInterface
 from flask_login import LoginManager
 from mongoengine.connection import get_db
 
-from uno_app.api.auth import auth_bp
-from uno_app.models.user_model import User
+from .api.auth import auth_bp
+from .api.admin import admin_bp
+from .api.main import main_bp
+from .models.user_model import User
 
 loginManager = LoginManager()
 loginManager.login_view = "auth.login"
@@ -40,6 +42,8 @@ def create_app(config=None):
         permanent=False
     )
 
-    app.register_blueprint(auth_bp)
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(main_bp)
+    app.register_blueprint(admin_bp, url_prefix="/admin")
 
     return app

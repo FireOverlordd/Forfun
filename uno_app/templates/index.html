@@ -31,10 +31,17 @@
                 <td class="platz">{{ loop.index }}.</td>
                 <td class="player">{{ player.name}}</td>
                 <td class="wins">{{ player.wins}}</td>
-                <td class="anteil">{{ (player.wins / (players | map(attribute="wins") | sum )) * 100 }}%</td>
+                <td class="anteil">{{ ((player.wins / (players | map(attribute="wins") | sum )) * 100) | round(2) }}%</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+    setTimeout(function() {
+        location.reload();
+    }, 10 * 60 * 1000);
+    </script>
+
 </body>
 </html>
