@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-from uno_app.factory import create_app
+from forfun_app.factory import create_app
 
 env = os.environ.get("FLASK_ENV", "dev")
 

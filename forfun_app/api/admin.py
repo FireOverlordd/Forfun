@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
-from uno_app.models.player_model import Player
+from forfun_app.models.player_model import Player
 
 admin_bp = Blueprint("admin", __name__)
 

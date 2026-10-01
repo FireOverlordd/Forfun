@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
-from uno_app.utils.decorators import admin_required
-from uno_app.utils.hash import Hash
-from uno_app.models.user_model import User
-from uno_app.models.player_model import Player
+from forfun_app.utils.decorators import admin_required
+from forfun_app.utils.hash import Hash
+from forfun_app.models.user_model import User
+from forfun_app.models.player_model import Player
 
 auth_bp = Blueprint("auth", __name__)
 
